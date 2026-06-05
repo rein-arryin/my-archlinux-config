@@ -1,0 +1,299 @@
+@import "/home/neo/.cache/wal/colors-waybar.css";
+
+* {
+    font-family: "JetBrainsMono Nerd Font", "Noto Sans Mono", monospace;
+    font-size: 13px;
+    font-weight: 400;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: #0d0d0d;
+    color: #d0d0d0;
+/*background-color: rgba(13, 13, 13, 0.6);
+color: #d0d0d0;*/
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+    background-color: transparent;
+}
+
+/* ─── All modules base ─────────────────────────────────────────────────────── */
+
+#custom-power,
+#battery,
+#cpu,
+#temperature,
+#memory,
+#pulseaudio,
+#pulseaudio.microphone,
+#idle_inhibitor,
+#backlight,
+#network,
+#clock,
+#tray,
+#mpris,
+#workspaces {
+    padding: 0 10px;
+    color: #b0b0b0;
+    background-color: transparent;
+    transition: color 0s ease, background-color 0.2s ease;
+}
+
+/* ─── Right separators ─────────────────────────────────────────────────────── */
+
+#battery {
+    border-right: 1px solid #1e1e1e;
+}
+
+/* ─── Clock ────────────────────────────────────────────────────────────────── */
+
+#clock {
+    color: #d0d0d0;
+    letter-spacing: 0.02em;
+    padding: 0 16px;
+    min-width: 65px;
+}
+
+/* ─── idle-inhibitor ───────────────────────────────────────────────────────── */
+
+#idle_inhibitor {
+    color: #505050;
+    min-width: 40px;
+}
+
+#idle_inhibitor.activated {
+    color: #d0d0d0;
+}
+
+#idle_inhibitor.deactivated {
+    color: #505050;
+}
+
+/* ─── backlight ──────────────────────────────────────────────────────────────── */
+
+#backlight {
+    color: #d0d0d0;
+    min-width: 48px;
+}
+
+/* ─── Network ──────────────────────────────────────────────────────────────── */
+
+#network {
+    color: #6abf69;
+    min-width: 40px;
+}
+
+#network.disconnected {
+    color: #505050;
+}
+
+/* alt mode: speeds */
+#network.wifi.alt,
+#network.ethernet.alt {
+    color: #a0c890;
+}
+
+/* ─── Microphone ───────────────────────────────────────────────────────────── */
+
+#pulseaudio.microphone {
+    color: #c4906b;
+}
+
+#pulseaudio.microphone.source-muted {
+    color: #505050;
+    min-width: 48px;
+}
+
+/* ─── Speaker ──────────────────────────────────────────────────────────────── */
+
+#pulseaudio {
+    color: #7ab8e0;
+    min-width: 48px;
+}
+
+#pulseaudio.muted {
+    color: #505050;
+    min-width: 48px;
+  }
+
+/* ─── Memory ───────────────────────────────────────────────────────────────── */
+
+#memory {
+    color: #9f87d4;
+}
+
+/* ─── CPU (toggles between usage and temp) ─────────────────────────────────── */
+
+#temperature {
+    /*color: #90a090;*/
+    color: #ffc100;
+}
+
+#temperature.critical {
+    color: #e05555;
+    animation: blink 1s linear infinite;
+}
+
+#cpu {
+    color: #7aa8d4;
+    min-width: 50px; 
+}
+
+/* ─── Battery ──────────────────────────────────────────────────────────────── */
+
+#battery {
+    color: #b0b0b0;
+}
+
+#battery.charging,
+#battery.plugged {
+    color: #6abf69;
+}
+
+#battery.warning:not(.charging) {
+    color: #e0a340;
+}
+
+#battery.critical:not(.charging) {
+    color: #e05555;
+    animation: blink 1s linear infinite;
+}
+
+@keyframes blink {
+    to { opacity: 0.4; }
+}
+
+/* ─── Power ────────────────────────────────────────────────────────────────── */
+
+#custom-power {
+    color: #505050;
+    font-size: 15px;
+    padding: 0 14px;
+    border-right: none;
+}
+
+#custom-power:hover {
+    color: #e05555;
+    background-color: #1a0e0e;
+    border-radius: 0 10px 10px 0;
+}
+
+/* ─── Workspaces — smaller buttons ─────────────────────────────────────────── */
+
+#workspaces {
+    padding: 0 6px;
+    border-right: 1px solid #1e1e1e;
+}
+
+#workspaces button {
+    padding: 0 6px;
+    margin: 8px 2px;
+    min-width: 18px;
+    min-height: 20px;
+    font-size: 11px;
+    color: #404040;
+    background-color: #1a1a1a;
+    border-radius: 9999px;
+    border: none;
+    transition: all 0.15s ease;
+}
+
+#workspaces button:hover {
+    background-color: #2a2a2a;
+    color: #888888;
+}
+
+/* empty — grey, number barely visible */
+#workspaces button.empty {
+    color: #383838;
+    background-color: #0d0d0d;
+}
+
+/* has windows but not active — glowing white */
+#workspaces button:not(.active):not(.empty) {
+    color: #ffffff;
+    background-color: #2a2a2a;
+}
+
+/* active — yellow */
+#workspaces button.active {
+    color: @background;
+    background-color: @color4;
+}
+
+#workspaces button.urgent {
+    background-color: #e05555;
+    color: #ffffff;
+}
+
+/* ─── Tray ─────────────────────────────────────────────────────────────────── */
+
+#tray {
+    padding: 0 8px;
+    border-right: 1px solid #1e1e1e;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #3a1515;
+    border-radius: 4px;
+}
+
+/* ─── MPRIS ────────────────────────────────────────────────────────────────── */
+
+#mpris {
+    color: #a0a0c0;
+    /*border-right: 1px solid #1e1e1e;*/
+    padding: 0 10px;
+    /* two-line clamp: fixes height to bar, clips overflow text */
+    min-width: 200px;
+}
+
+#mpris.playing {
+    color: @color4;
+}
+
+#mpris.paused {
+    color: #505050;
+}
+
+#mpris.stopped {
+    color: #383838;
+}
+
+/* ─── Hover ────────────────────────────────────────────────────────────────── */
+
+#clock:hover,
+#network:hover,
+#idle_inhibitor:hover,
+#backlight:hover,
+#pulseaudio:hover,
+#pulseaudio.microphone:hover,
+#memory:hover,
+#temperature:hover,
+#cpu:hover,
+#battery:hover,
+#mpris:hover {
+    color: #ffffff;
+    background-color: #161616;
+}
+
+/* ─── Tooltips ─────────────────────────────────────────────────────────────── */
+
+tooltip {
+    background-color: #0d0d0d;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    color: #d0d0d0;
+    font-size: 12px;
+    padding: 4px 8px;
+}

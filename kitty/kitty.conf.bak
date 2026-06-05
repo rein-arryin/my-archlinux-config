@@ -1,0 +1,9 @@
+font_family		JetBrainsMonoNerdFont-Regular
+bold_font		JetBrainsMonoNLNerdFont-Bold
+italic_font		JetBrainsMonoNerdFont-Italic
+bold_italic_font	JetBrainsMonoNerdFont-BoldItalic
+
+background_opacity 0.7
+dynamic_background_opacity yes
+
+confirm_os_window_close 0

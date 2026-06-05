@@ -1,0 +1,164 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 36,
+    "spacing": 0,
+    "reload_style_on_change": true,
+
+    "modules-left": [
+        "hyprland/workspaces",
+        "tray",
+        "mpris"
+    ],
+
+    "modules-center": [
+        "clock"
+  ],
+
+    "modules-right": [
+        "idle_inhibitor",
+        "network",
+        "pulseaudio#microphone",
+        "pulseaudio",
+        "backlight",
+        "temperature",
+        "battery",
+        "custom/power"
+    ],
+
+      "hyprland/workspaces": {
+      "format": "{id}",
+      "on-click": "activate",
+      "on-scroll-up": "hyprctl dispatch workspace e+1",
+      "on-scroll-down": "hyprctl dispatch workspace e-1",
+      "all-outputs": true,
+      "show-special": false,
+      "sort-by-number": true,
+      "persistent-workspaces": {
+          "1": [],
+          "2": [],
+          "3": [],
+          "4": [],
+          "5": [],
+          "6": [],
+          "7": [],
+          "8": [],
+          "9": [],
+          "10": []
+        }
+    },
+
+      "tray": {
+        "icon-size": 14,
+        "spacing": 6
+    },
+
+
+      "mpris": {
+        "format": "{title}",
+        "format-paused": "{title}",
+        "on-scroll-up":  "playerctl next",
+        "on-scroll-down": "playerctl previous",
+        "max-length": 20,
+        "tooltip-format": "{player} · {artist}\n{title}"
+    },
+
+
+    "clock": {
+        "interval": 1,
+        "format":             "{:%H:%M}",
+        "format-alt":         "{:%d|%m|%y}",
+        "tooltip-format":     "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "tooltip": false,
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+
+    "network": {
+        "interval": 2,
+        "format-wifi":          "󰤨 ",
+        "format-disconnected": "󰤭 ",
+        "on-click":            "kitty -e impala",
+        "tooltip-format-wifi": "{essid}  {signalStrength}%\n↓ {bandwidthDownBytes}  ↑ {bandwidthUpBytes}\n{ipaddr}"
+    },
+
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source":       "󰍬 {volume}%",
+        "format-source-muted": "󰍭",
+        "on-click":            "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+        "on-scroll-up":        "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+",
+        "on-scroll-down":      "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-",
+        "on-click-right":      "pavucontrol"
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰖁",
+        "format-icons": {
+            "headphone": "󰋋",
+            "headset":   "󰋎",
+            "default":   ["󰕿", "󰖀", "󰕾"]
+        },
+        "on-click":       "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-scroll-up":   "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+        "on-click-right": "pavucontrol"
+    },
+
+    "memory": {
+        "interval": 5,
+        "format": "󰍛 {used:.1f}G",
+        "tooltip-format": "{used:.1f}G / {total:.1f}G used\nSwap: {swapUsed:.1f}G / {swapTotal:.1f}G"
+    },
+
+    "temperature": {
+        "thermal-zone": 0,
+        "critical-threshold": 85,
+        "format": "󰔏 {temperatureC}°C",
+        "format-critical": "󰸁 {temperatureC}°C",
+        "tooltip": false
+    },
+
+    "cpu": {
+        "interval": 2,
+        "format": "󰻠 {usage}%",
+        "format-alt": "󰻠 {avg_frequency}GHz",
+        "tooltip": false
+    },
+
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{percent}% {icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "on-scroll-up":   "brightnessctl set +5%",
+        "on-scroll-down": "brightnessctl set 5%-",
+        "smooth-scrolling-threshold": 1,
+        "tooltip": false
+    },
+
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged":  "󰚥 {capacity}%",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "tooltip-format": "{timeTo} · {power:.1f}W"
+    },
+
+    "custom/power": {
+        "format": "⏻",
+        "tooltip": false,
+        "on-click": "systemctl poweroff"
+    }
+}
